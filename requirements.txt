@@ -9,11 +9,13 @@ cffi==1.5.2
 coverage==4.0.3
 cryptography==1.2.2
 decorator==4.0.9
+defusedxml==0.4.1
 dj-database-url==0.4.0
 Django==1.9.2
 django-allauth==0.24.1
 django-filter==0.12.0
 django-haystack==2.4.1
+django-model-utils==2.4
 django-naomi==0.8
 django-storages==1.4
 djangorestframework==3.3.2
@@ -40,7 +42,7 @@ pyasn1==0.1.9
 pycparser==2.14
 pyOpenSSL==0.15.1
 python-decouple==3.0
-python-openid==2.2.5
+python3-openid==3.0.9
 pytz==2015.7
 requests==2.9.1
 requests-oauthlib==0.6.1
