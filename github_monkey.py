@@ -1,6 +1,4 @@
 import requests
-import gfm
-from bs4 import BeautifulSoup
 import re
 
 issues_url = 'https://api.github.com/repos/kennethreitz/requests/issues'
@@ -13,19 +11,19 @@ for issue in issue_list:
     # remove code blocks
     issue_body = re.sub(r'```.+```', '', issue['body'], flags=re.DOTALL)
 
-    response = requests.get(
-        'http://gateway-a.watsonplatform.net/calls/text/TextGetRankedKeywords',
+    response = requests.post(
+        'https://api.monkeylearn.com/v2/extractors/ex_y7BPYzNG/extract/',
+        headers={
+            'Authorization': 'Token {}'.format(apikey)
+        },
         params={
-            'apikey': apikey,
-            'text': issue_body,
-            'maxRetrieve': 10,
-            'keywordExtractMode': 'strict',
-            'sentiment': 0,
-            'outputMode': 'json'
-        })
-    keywords = response.json()['keywords']
+            'max_keywords': 10,
+            'expand_acronyms': False
+        },
+        json={"text_list": [issue_body]})
+    result = response.json()['result'][0]
     tags = sorted(
-        [(x['text'], x['relevance']) for x in keywords],
+        [(x['keyword'], x['relevance']) for x in result],
         key=lambda t: t[1],
         reverse=True)
     issue_tag_dict[issue['number']] = {
@@ -45,7 +43,6 @@ pprint.pprint(issue_tag_dict)
 # print('without code\n', )
 
 
-# apikey = '7e01429feb1c1a6fd78aee6e1246bc25ff9dc5a5'
 # text = '''
 # Unicode QUERY_PARAM not parsed at all
 
