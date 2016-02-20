@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
 
+    # Added.
+    'haystack',
+
     # Your apps:
     'bikeways',
 ]
@@ -76,6 +79,13 @@ TEMPLATES = [
         },
     },
 ]
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
