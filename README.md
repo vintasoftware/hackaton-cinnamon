@@ -1,4 +1,4 @@
-# bikes-perf
+# Yacht
 
 ## How to deploy
 - `heroku create --app app-name-here`
