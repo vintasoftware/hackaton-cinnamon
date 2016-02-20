@@ -1,4 +1,4 @@
-"""bikes URL Configuration
+"""Yacht URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^$', LandingPageView.as_view(), name='home'),
     url(r'^accounts/', include('allauth.urls')),
 
-    url(r'^api/v1/', include('bikeways.endpoints_urls')),
+    # url(r'^api/v1/', include('bikeways.endpoints_urls')),
 ]

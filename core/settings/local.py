@@ -28,7 +28,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'USER': '',
-        'NAME': 'bikes_dev.sqlite3',
+        'NAME': 'yacht_dev.sqlite3',
         'PASSWORD': 'dev1',
         'HOST': '127.0.0.1',
         'ATOMIC_REQUESTS': True,
