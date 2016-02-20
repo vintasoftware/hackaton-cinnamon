@@ -16,8 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from core.views import LandingPageView
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', LandingPageView.as_view(), name='home'),
     url(r'^accounts/', include('allauth.urls')),
 
     url(r'^api/v1/', include('bikeways.endpoints_urls')),
