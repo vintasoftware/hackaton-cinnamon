@@ -82,14 +82,20 @@ main {
       margin: 0 0 50px; }
 
 .features {
-  padding: 80px 0; }
+  padding-top: 80px; }
   .features h2 {
     color: #000;
     font-family: "Source Sans Pro", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    padding-bottom: 80px;
     font-weight: 300;
     font-size: 52px;
     margin-bottom: 17px;
     margin-top: 0;
     text-align: center; }
+
+footer {
+  text-align: center;
+  color: #888888;
+  padding: 40px; }
 
 /*# sourceMappingURL=custom-style.css.map */

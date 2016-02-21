@@ -120,15 +120,22 @@ main {
 }
 
 .features {
-  padding:80px 0;
+  padding-top:80px;
 
   h2 {
       color: #000;
       font-family: "Source Sans Pro", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+      padding-bottom:80px;
       font-weight: 300;
       font-size: 52px;
       margin-bottom: 17px;
       margin-top: 0;
       text-align: center;
   }
+}
+
+footer {
+  text-align: center;
+  color: #888888;
+  padding: 40px;
 }
