@@ -5,11 +5,12 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
+import sys
 from issues.models import *
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
-issue_number = 21
+issue_number = int(sys.argv[1])
 issue = Issue.objects.get(number=issue_number)
 issue_and_data = sorted([(obj.number, obj.get_feature())
                          for obj in Issue.objects.order_by('number')])
