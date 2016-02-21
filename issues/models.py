@@ -9,6 +9,8 @@ class Issue(IndexedTimeStampedModel):
     body = models.TextField(blank=True)
     repo_owner = models.CharField(max_length=255)
     repo = models.CharField(max_length=255)
+    updated_at = models.DateTimeField()
+    answered = models.BooleanField(default=False)
     raw = models.TextField()
 
     def get_feature(self):

@@ -1,5 +1,6 @@
 import requests
 import re
+import json
 from requests.auth import HTTPBasicAuth
 
 import os
@@ -44,7 +45,7 @@ while pr_list:
                                                     'author': pr['user']['login'],
                                                     'repo_owner': repo_owner,
                                                     'repo': repo,
-                                                    'raw': str(pr)
+                                                    'raw': json.dumps(pr)
                                                  })
         if issue_numbers:
             issues = Issue.objects.filter(number__in=issue_numbers)
