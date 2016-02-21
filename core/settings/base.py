@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # Your apps:
     'core',
     'issues',
+    'accounts',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -169,4 +170,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
+AUTH_USER_MODEL = "accounts.Account"
+ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 SITE_ID = 2
