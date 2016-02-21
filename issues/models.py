@@ -17,14 +17,14 @@ class Issue(IndexedTimeStampedModel):
     def __str__(self):
         return "#{} - {}".format(self.number, self.title)
 
-
-class Tag(IndexedTimeStampedModel):
-    issue = models.ForeignKey(Issue, related_name='tags')
-    name = models.CharField(max_length=255)
-    relevance = models.FloatField()
-
-    def __str__(self):
-        return "{} ({})".format(self.name, self.relevance)
+#
+# class Tag(IndexedTimeStampedModel):
+#     issue = models.ForeignKey(Issue, related_name='tags')
+#     name = models.CharField(max_length=255)
+#     relevance = models.FloatField()
+#
+#     def __str__(self):
+#         return "{} ({})".format(self.name, self.relevance)
 
 
 class File(IndexedTimeStampedModel):
@@ -42,6 +42,7 @@ class PullRequest(IndexedTimeStampedModel):
     repo = models.CharField(max_length=255)
     issues = models.ManyToManyField(Issue, related_name='prs')
     files = models.ManyToManyField(File, related_name='prs')
+    author = models.CharField(max_length=255)
     raw = models.TextField()
 
     def __str__(self):

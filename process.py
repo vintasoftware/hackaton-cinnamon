@@ -1,4 +1,5 @@
 import os
+from requests.auth import HTTPBasicAuth
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
 
@@ -11,9 +12,11 @@ from issues.models import *
 issues_url = 'https://api.github.com/repos/omab/python-social-auth/issues'
 repo_owner = 'omab'
 repo = 'python-social-auth'
+api_key = '05a80dd8dab0c18d0c8c905545cc46a9f2b7fdaf'
 
 page = 1
-issues_response = requests.get(issues_url, params={'state': 'all', 'page': page})
+issues_response = requests.get(issues_url, params={'state': 'all', 'page': page},
+                               auth=HTTPBasicAuth('aericson', api_key))
 issue_list = issues_response.json()
 while issue_list:
     print('Page', page)
@@ -30,7 +33,8 @@ while issue_list:
             })
 
     page += 1
-    issues_response = requests.get(issues_url, params={'state': 'all', 'page': page})
+    issues_response = requests.get(issues_url, params={'state': 'all', 'page': page},
+                                   auth=HTTPBasicAuth('aericson', api_key))
     issue_list = issues_response.json()
 
 print("Done!")
