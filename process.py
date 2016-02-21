@@ -12,11 +12,12 @@ from issues.models import *
 issues_url = 'https://api.github.com/repos/omab/python-social-auth/issues'
 repo_owner = 'omab'
 repo = 'python-social-auth'
-api_key = '05a80dd8dab0c18d0c8c905545cc46a9f2b7fdaf'
+GITHUB_USER = os.environ['GITHUB_USER']
+GITHUB_KEY = os.environ['GITHUB_KEY']
 
 page = 1
 issues_response = requests.get(issues_url, params={'state': 'all', 'page': page},
-                               auth=HTTPBasicAuth('aericson', api_key))
+                               auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
 issue_list = issues_response.json()
 while issue_list:
     print('Page', page)
@@ -34,7 +35,7 @@ while issue_list:
 
     page += 1
     issues_response = requests.get(issues_url, params={'state': 'all', 'page': page},
-                                   auth=HTTPBasicAuth('aericson', api_key))
+                                   auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
     issue_list = issues_response.json()
 
 print("Done!")
