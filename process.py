@@ -1,5 +1,7 @@
 import os
+import json
 from requests.auth import HTTPBasicAuth
+from django.utils.dateparse import parse_datetime
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
 
@@ -30,7 +32,8 @@ while issue_list:
                 'body': gh_issue['body'] or '',
                 'repo_owner': repo_owner,
                 'repo': repo,
-                'raw': str(gh_issue)
+                'raw': json.dumps(gh_issue),
+                'updated_at': parse_datetime(gh_issue['updated_at'])
             })
 
     page += 1
