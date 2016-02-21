@@ -11,9 +11,9 @@ application = get_wsgi_application()
 import requests
 from issues.models import *
 
-issues_url = 'https://api.github.com/repos/omab/python-social-auth/issues'
 repo_owner = 'omab'
 repo = 'python-social-auth'
+issues_url = 'https://api.github.com/repos/%s/%s/issues' % (repo_owner, repo)
 GITHUB_USER = os.environ['GITHUB_USER']
 GITHUB_KEY = os.environ['GITHUB_KEY']
 
@@ -33,7 +33,8 @@ while issue_list:
                 'repo_owner': repo_owner,
                 'repo': repo,
                 'raw': json.dumps(gh_issue),
-                'updated_at': parse_datetime(gh_issue['updated_at'])
+                'updated_at': parse_datetime(gh_issue['updated_at']),
+                'answered': True,
             })
 
     page += 1
