@@ -1,0 +1,11 @@
+User: {{ user }}
+
+Added Repos:
+{% for repo in object_list %}
+{{ repo.name }}
+{% endfor %}
+
+Not Added Repos
+{% for repo in repos_not_added %}
+{{ repo.name }}
+{% endfor %}

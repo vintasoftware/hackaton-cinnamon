@@ -43,3 +43,9 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __unicode__(self):
         return self.username
+
+
+class Repos(models.Model):
+    user = models.ForeignKey('accounts.Account', related_name='repositories')
+    name = models.CharField(max_length=50)
+    html_url = models.URLField()

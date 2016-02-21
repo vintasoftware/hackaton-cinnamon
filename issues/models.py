@@ -6,7 +6,7 @@ from core.models import IndexedTimeStampedModel
 class Issue(IndexedTimeStampedModel):
     number = models.PositiveIntegerField()
     title = models.CharField(max_length=255)
-    body = models.TextField()
+    body = models.TextField(blank=True)
     repo_owner = models.CharField(max_length=255)
     repo = models.CharField(max_length=255)
     raw = models.TextField()
