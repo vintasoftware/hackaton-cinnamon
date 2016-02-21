@@ -11,6 +11,9 @@ class Issue(IndexedTimeStampedModel):
     repo = models.CharField(max_length=255)
     raw = models.TextField()
 
+    def get_feature(self):
+        return "{} {}".format(self.title, self.body)
+
     def __str__(self):
         return "#{} - {}".format(self.number, self.title)
 
