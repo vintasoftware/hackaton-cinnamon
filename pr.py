@@ -1,48 +1,64 @@
 import requests
 import re
+from requests.auth import HTTPBasicAuth
+
+import os
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+api_key = 'key'
 
 from issues.models import PullRequest, Issue
 
-repo_owner = 'evansd'
-repo = 'whitenoise'
-prs_url = 'https://api.github.com/repos/%s/%s/pulls?state=all' % (repo_owner, repo)
+repo_owner = 'omab'
+repo = 'python-social-auth'
+prs_url = 'https://api.github.com/repos/%s/%s/pulls' % (repo_owner, repo)
 
-response = requests.get(prs_url)
+page = 1
+response = requests.get(prs_url, params={'state': 'all', 'page': page},
+                        auth=HTTPBasicAuth('aericson', api_key))
 pr_list = response.json()
-pr_issue_dict = {}
+# pr_issue_dict = {}
 
-for pr in pr_list:
-    pr_body = pr['body']
-    issue_numbers = []
+while pr_list:
+    print('Page', page)
+    for pr in pr_list:
+        pr_body = pr['body'] or ""
+        issue_numbers = []
 
-    matches = list(re.finditer(r'#(\d+)', pr_body))
-    if matches:
-        issue_numbers += [issues.groups()[0] for issues in matches]
+        matches = list(re.finditer(r'#(\d+)', pr_body))
+        if matches:
+            issue_numbers += [issues.groups()[0] for issues in matches]
 
-    matches = list(re.finditer(r'#(\d+)', pr['title']))
-    if matches:
-        issue_numbers += [issues.groups()[0] for issues in matches]
+        matches = list(re.finditer(r'#(\d+)', pr['title']))
+        if matches:
+            issue_numbers += [issues.groups()[0] for issues in matches]
 
-    if not issue_numbers:
-        continue
+        p, _ = PullRequest.objects.get_or_create(number=pr['number'],
+                                                 defaults={
+                                                    'title': pr['title'],
+                                                    'body': pr['body'] or '',
+                                                    'author': pr['user']['login'],
+                                                    'repo_owner': repo_owner,
+                                                    'repo': repo,
+                                                    'raw': str(pr)
+                                                 })
+        if issue_numbers:
+            issues = Issue.objects.filter(number__in=issue_numbers)
+            p.issues = issues
+        print("saving PR#", pr['number'])
+        # pr_issue_dict[pr['number']] = {
+        #     'pr': pr['title'],
+        #     'text': pr['body'],
+        #     'issue_numbers': [i[1:] for i in issue_numbers]
+        # }
+    page += 1
+    response = requests.get(prs_url, params={'state': 'all', 'page': page},
+                            auth=HTTPBasicAuth('aericson', api_key))
+    pr_list = response.json()
 
-    issues = Issue.objects.filter(number__in=issue_numbers)
-    p, _ = PullRequest.objects.get_or_create(number=pr['number'],
-                                             defaults={
-                                                'title': pr['title'],
-                                                'body': pr['body'],
-                                                'repo_owner': repo_owner,
-                                                'repo': repo,
-                                                'raw': str(pr)
-                                             })
-    p.issues = issues
 
-    pr_issue_dict[pr['number']] = {
-        'pr': pr['title'],
-        'text': pr['body'],
-        'issue_numbers': [i[1:] for i in issue_numbers]
-    }
-
-
-import pprint
-pprint.pprint(pr_issue_dict)
+# import pprint
+# pprint.pprint(pr_issue_dict)

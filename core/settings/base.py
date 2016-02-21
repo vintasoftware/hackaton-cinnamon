@@ -170,6 +170,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
+ACCOUNT_ADAPTER = 'accounts.allauth.AccountAdapter'
+
 AUTH_USER_MODEL = "accounts.Account"
 ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'

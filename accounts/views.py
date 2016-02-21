@@ -1,7 +1,9 @@
 
+import json
 import requests
 
-from django.views.generic import ListView
+from django.http import HttpResponse
+from django.views.generic import ListView, CreateView, DeleteView
 
 from allauth.socialaccount.models import SocialToken
 
@@ -22,5 +24,28 @@ class RepoListView(ListView):
         params = {'access_token': socialtoken}
         all_repos = requests.get('https://api.github.com/user/repos', params=params).json()
         repos_added = Repos.objects.all().values_list('name', flat=True)
-        context['repos_not_added'] = [r for r in all_repos if r['name'] not in repos_added]
+        context['repos_not_added'] = [(json.dumps(r), r['name']) for r in all_repos if r['name'] not in repos_added]
+        context['all_repos'] = [(json.dumps(r), r['name']) for r in all_repos]
+        context['added_repos_names'] = repos_added
         return context
+
+
+class RepoCreateView(CreateView):
+    model = Repos
+    fields = ['name', 'html_url']
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponse(json.dumps(form.data), content_type="application/json")
+
+
+class RepoDeleteView(DeleteView):
+    model = Repos
+
+    def delete(self, request, *args, **kwargs):
+        name = self.request.POST.get('name')
+        repo = Repos.objects.get(user=self.request.user, name=name)
+        repo.delete()
+        return HttpResponse(json.dumps("'ahn': 'heuia'"), content_type="application/json")
