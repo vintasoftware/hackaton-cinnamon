@@ -11,7 +11,7 @@ SECRET_KEY = config('SECRET_KEY', default='')
 
 # STORAGES
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-STATIC_ROOT = base_dir_join('staticfiles')
+STATIC_ROOT = base_dir_join('..', 'staticfiles')
 STATIC_URL = '/static/'
 
 # CELERY
