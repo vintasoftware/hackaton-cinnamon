@@ -10,10 +10,13 @@ a:hover {
   float: left;
   position: relative;
   top: 90px; }
+  @media (max-width: 1200px) {
+    #triangle-left {
+      display: none; } }
 
 .box {
   border: solid 10px #A1887F;
-  height: 240px;
+  min-height: 240px;
   width: 92%;
   float: left;
   text-align: left;
@@ -21,6 +24,9 @@ a:hover {
   color: #000;
   font-size: 18px;
   font-family: "Source Sans Pro", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif; }
+  @media (max-width: 1200px) {
+    .box {
+      width: 100%; } }
   .box span {
     display: inline-block;
     width: 100%;
@@ -126,8 +132,10 @@ main {
     text-align: center; }
   .features .item {
     position: relative;
-    top: 90px;
     margin-bottom: 2em; }
+    @media (min-width: 992px) {
+      .features .item {
+        top: 90px; } }
   .features .informations {
     height: 300px;
     margin: 20px 0; }
