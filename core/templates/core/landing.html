@@ -1,24 +1,26 @@
 {% extends "core/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-  <header class="header" id="header">
-    <div class="container">
-      <!-- logo -->
-      <div class="logo">
-        <a href="/"><img src="/assets/marketing/logo-338820ee00fa2e141dccfca36e026240.png" alt="Huboard™"></a>
+  <main>
+    <div class="mask"></div>
+    <header class="header" id="header">
+      <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+          <!-- logo -->
+          <div class="col-md-4 col-xs-12 logo">
+            <a href="/"><img src="{% static 'images/logo.png' %}"></a>
+          </div>
+          <a href="#" class="rounded-button pull-right visible-md visible-lg">Sign up</a>
+        </div>
       </div>
-
-      <!-- navigation -->
-      <button class="nav-toggle">Menu</button>
-      <nav class="nav" id="nav">
-        <ul>
-          <li class="nav__item "><a href="/?controller=features#features" class="nav__link"><span>Features</span></a></li>
-          <li class="nav__item "><a href="/pricing" class="nav__link"><span>Plans &amp; Pricing</span></a></li>
-          <li class="nav__item"><a href="https://enterprise.huboard.com" class="nav__link"><span>Enterprise</span></a></li>
-          <li class="nav__item "><a href="/integrations" class="nav__link"><span>Integrations</span></a></li>
-          <li class="nav__item nav__item--btn "><a href="/login" class="nav__btn ">Sign in</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    </header>
+    <section class="hero">
+      <h2 class="highlight">Choose the right person for your GitHub issues</h2>
+      <p class="short-description">
+        Cinnamon is essas categorias profissionais ainda estão bem mais no mundo da geração do meu pai. E agora a coisa vai ficar um pouco pessoal, porque vou falar um pouco do meu pai. Ele nasceu em 1957, filho de um pai.
+      </p>
+      <a href="/login" class="btn">Sign up with your Github account</a>
+    </section>
+  </main>
 {% endblock %}
