@@ -8,7 +8,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
-api_key = 'key'
+GITHUB_USER = os.environ['GITHUB_USER']
+GITHUB_KEY = os.environ['GITHUB_KEY']
 
 from issues.models import PullRequest, Issue
 
@@ -18,7 +19,7 @@ prs_url = 'https://api.github.com/repos/%s/%s/pulls' % (repo_owner, repo)
 
 page = 1
 response = requests.get(prs_url, params={'state': 'all', 'page': page},
-                        auth=HTTPBasicAuth('aericson', api_key))
+                        auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
 pr_list = response.json()
 # pr_issue_dict = {}
 
@@ -56,7 +57,7 @@ while pr_list:
         # }
     page += 1
     response = requests.get(prs_url, params={'state': 'all', 'page': page},
-                            auth=HTTPBasicAuth('aericson', api_key))
+                            auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
     pr_list = response.json()
 
 
