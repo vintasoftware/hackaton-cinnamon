@@ -11,7 +11,7 @@ class Issue(IndexedTimeStampedModel):
     repo = models.CharField(max_length=255)
     raw = models.TextField()
 
-    def __unicode__(self):
+    def __str__(self):
         return "#{} - {}".format(self.number, self.title)
 
 
@@ -20,14 +20,14 @@ class Tag(IndexedTimeStampedModel):
     name = models.CharField(max_length=255)
     relevance = models.FloatField()
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} ({})".format(self.name, self.relevance)
 
 
 class File(IndexedTimeStampedModel):
     filename = models.CharField(max_length=4096)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.filename
 
 
@@ -41,5 +41,5 @@ class PullRequest(IndexedTimeStampedModel):
     files = models.ManyToManyField(File, related_name='prs')
     raw = models.TextField()
 
-    def __unicode__(self):
+    def __str__(self):
         return "PR #{} - {}".format(self.number, self.title)
