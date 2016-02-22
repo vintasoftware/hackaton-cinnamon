@@ -3,6 +3,7 @@
 {% load socialaccount %}
 
 {% block content %}
+  {% get_providers as socialaccount_providers %}
   <main>
     <div class="mask"></div>
     <header class="header" id="header">
@@ -12,20 +13,22 @@
           <div class="col-md-4 col-xs-12 logo">
             <a href="/"><img src="{% static 'images/logo.png' %}"></a>
           </div>
-          {% get_providers as socialaccount_providers %}
           {% for provider in socialaccount_providers %}
-            <a title="{{provider.name}}" class="rounded-button pull-right visible-md visible-lg socialaccount_provider {{provider.id}}" 
+            <a title="Sign up" class="rounded-button pull-right visible-md visible-lg socialaccount_provider {{provider.id}}" 
                href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">Sign up</a>
           {% endfor %}
         </div>
       </div>
     </header>
     <section class="hero">
-      <h2 class="highlight">Choose the right person and help for your GitHub issues</h2>
+      <h2 class="highlight">Get automated help for your GitHub project issues</h2>
       <p class="short-description">
-        Cinnamon is a github manager who helps you to choose the best person to solve a recent created issue. Our algorith analyses all the solved issues and his specific commits to refer the best coder available to solve it!
+        <b>Cinnamon</b> is a GitHub plugin that helps you to fix your GitHub issues faster. When a new issue appears, our <b>CinnaBot</b> comment on it linking to similar issues on your project, indicating the code files where the bug might be, and even suggesting the best project developers to solve it.
       </p>
-      <a href="accounts/github/login" class="btn">Sign up with your Github account</a>
+      {% for provider in socialaccount_providers %}
+        <a title="Sign up with your Github account" class="btn socialaccount_provider {{provider.id}}" 
+           href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">Sign up with your Github account</a>
+      {% endfor %}
     </section>
   </main>
   <section class="light_section about_section">
