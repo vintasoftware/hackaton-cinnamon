@@ -10,6 +10,8 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
 import requests
+from accounts.models import Repos
+from issues.utils.similar import find_similiar
 from issues.models import *
 
 repo_owner = 'aericson'
@@ -20,7 +22,8 @@ GITHUB_KEY = os.environ['GITHUB_KEY']
 
 # get new issues
 
-since = Issue.objects.order_by('-updated_at').first().updated_at + timedelta(seconds=1)
+since = Issue.objects.filter(repo_owner=repo_owner, repo=repo
+    ).order_by('-updated_at').first().updated_at
 page = 1
 issues_response = requests.get(issues_url, params={'state': 'open', 'page': page,
                                                    'since': since.isoformat()},
@@ -49,4 +52,13 @@ while issue_list:
     issue_list = issues_response.json()
 
 for issue in Issue.objects.filter(answered=False):
-    print("would answer", issue)
+    repo = Repos.objects.get(owner=issue.repo_owner, name=issue.repo)
+    if repo.parent_repo:
+        similar_issues = find_similiar(issue, repo.parent_repo, repo.parent_repo_owner)
+    else:
+        similar_issues = find_similiar(issue, repo.name, repo.owner)
+    suggested_users = []
+    for issue in similar_issues:
+        for pr in issue.prs.all():
+            suggested_users.append(pr.author)
+    print("would suggest:", suggested_users)

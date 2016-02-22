@@ -19,15 +19,6 @@ class Issue(IndexedTimeStampedModel):
     def __str__(self):
         return "#{} - {}".format(self.number, self.title)
 
-#
-# class Tag(IndexedTimeStampedModel):
-#     issue = models.ForeignKey(Issue, related_name='tags')
-#     name = models.CharField(max_length=255)
-#     relevance = models.FloatField()
-#
-#     def __str__(self):
-#         return "{} ({})".format(self.name, self.relevance)
-
 
 class File(IndexedTimeStampedModel):
     filename = models.CharField(max_length=4096)

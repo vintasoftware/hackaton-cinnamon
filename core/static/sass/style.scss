@@ -12,6 +12,7 @@ $large-devices-min: "(min-width: 1200px)";
 $extra-large-devices: "(min-width: 1440px)";
 
 @import "other-sass";
+@import "internal";
 
 //Main
 a {
@@ -66,9 +67,7 @@ a {
   }
 }
 
-
-
-.btn {
+.hero .btn {
   background-color: #fb563b;
   border: 0;
   border-radius: 52px;
@@ -85,7 +84,7 @@ a {
 
   &:hover {
     color: #fff;
-    background-color: #8D6E63;
+    background-color: #D44129;
   }
 }
 

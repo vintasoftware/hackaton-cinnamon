@@ -47,6 +47,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
 class Repos(models.Model):
     user = models.ForeignKey('accounts.Account', related_name='repositories')
+    owner = models.CharField(max_length=255)
     name = models.CharField(max_length=50)
     parent_repo_owner = models.CharField(max_length=255, blank=True)
     parent_repo = models.CharField(max_length=255, blank=True)

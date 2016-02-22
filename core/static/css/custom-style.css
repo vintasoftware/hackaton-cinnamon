@@ -6975,6 +6975,22 @@
 .about_section .row + .row {
   margin-top: 40px; }
 
+.navbar {
+  background: #fb563b; }
+  .navbar .navbar-brand {
+    padding: 8px 15px; }
+    .navbar .navbar-brand img {
+      width: 125px; }
+  .navbar span a {
+    color: #fff;
+    font-size: 16px;
+    margin: 25px;
+    position: relative;
+    top: 12px; }
+
+.list-repositories p {
+  display: inline-block; }
+
 a:hover {
   text-decoration: none; }
 
@@ -7016,7 +7032,7 @@ a:hover {
     padding-left: 25px;
     padding-right: 25px; }
 
-.btn {
+.hero .btn {
   background-color: #fb563b;
   border: 0;
   border-radius: 52px;
@@ -7030,9 +7046,9 @@ a:hover {
   font-size: 1.6rem;
   padding: 18px 26px;
   padding: 1.8rem 2.6rem; }
-  .btn:hover {
+  .hero .btn:hover {
     color: #fff;
-    background-color: #8D6E63; }
+    background-color: #D44129; }
 
 main {
   position: relative;
