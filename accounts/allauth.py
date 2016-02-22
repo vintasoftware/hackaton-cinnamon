@@ -21,7 +21,7 @@ Here are a list with similar issues:
 {% endfor %}
 Possible files where you'll need to work:
 {% for file in files %}
-{{ forloop.counter }}. [{{ file.name }}]({{ file.link }})
+{{ forloop.counter }}. [{{ file }}](https://github.com/{{user}}/{{repo}}/blob/master/{{ file }})
 {% endfor %}
 
 We hope have helped!
@@ -41,7 +41,8 @@ def comment_on_issue(user, repo, issue, users, issues, files):
     headers = {'Authorization': 'token {}'.format(settings.CINNABOT_TOKEN)}
 
     template = Template(MESSAGE)
-    c = Context({'users': users, 'issues': issues, 'files': files})
+    c = Context({'users': users, 'issues': issues, 'files': files,
+                 'user': user, 'repo': repo})
     message = template.render(c)
 
     data = json.dumps({'body': message})

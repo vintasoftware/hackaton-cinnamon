@@ -13,6 +13,7 @@ import requests
 from accounts.models import Repos
 from issues.utils.similar import find_similiar
 from issues.models import *
+from accounts.allauth import comment_on_issue
 
 
 for repo in Repos.objects.filter(is_done=True):
@@ -105,8 +106,13 @@ for repo in Repos.objects.filter(is_done=True):
         pr_list = response.json()
 
 
+def link_for_issue(issue):
+    return 'https://github.com/{}/{}/issues/{}'.format(issue.repo_owner,
+                                                       issue.repo,
+                                                       issue.number)
+
+
 for issue in Issue.objects.filter(answered=False):
-    print(issue)
     repo = Repos.objects.get(owner=issue.repo_owner, name=issue.repo)
     if repo.parent_repo:
         similar_issues = find_similiar(issue, repo.parent_repo, repo.parent_repo_owner)
@@ -114,11 +120,18 @@ for issue in Issue.objects.filter(answered=False):
         similar_issues = find_similiar(issue, repo.name, repo.owner)
     suggested_users = set()
     suggested_files = set()
-    for issue in similar_issues:
-        for pr in issue.prs.all():
+    for sissue in similar_issues:
+        for pr in sissue.prs.all():
             suggested_users.add(pr.author)
             for f in pr.files.all():
                 suggested_files.add(f.filename)
-    print("would suggest:", similar_issues)
-    print("would suggest:", suggested_files)
-    print("would suggest:", suggested_users)
+    # print("would suggest:", similar_issues)
+    # print("would suggest:", suggested_files)
+    # print("would suggest:", suggested_users)
+    issues = [{'name': i.title, 'link': link_for_issue(i)} for i in similar_issues]
+    # import ipdb; ipdb.set_trace()
+    # print(issue.repo_owner, issue.repo, issue.number, suggested_users,
+    #       issues, list(suggested_files)[:5])
+
+    comment_on_issue(issue.repo_owner, issue.repo, issue.number, suggested_users,
+                     issues, list(suggested_files)[:5])

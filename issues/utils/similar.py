@@ -12,7 +12,6 @@ from sklearn.metrics.pairwise import linear_kernel
 
 
 def find_similiar(issue, repo, repo_owner):
-    print(repo, repo_owner, issue)
     issue_number = issue.number
     issue_and_data = sorted([(obj.number, obj.get_feature())
                              for obj in Issue.objects.filter(repo_owner=repo_owner, repo=repo).order_by('number')])
