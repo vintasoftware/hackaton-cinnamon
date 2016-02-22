@@ -103,5 +103,4 @@ for repo in Repos.objects.filter(is_done=False):
         pr_list = response.json()
     repo_obj.is_done = True
     repo_obj.save()
-
     print("Done!")

@@ -63,8 +63,8 @@
            'name': data['name'],
            'html_url': data['html_url']
          },
-      success: function(data) {
-        window.location.href = '/loading';
+      success: function(pk) {
+        window.location.href = '/loading/' + pk;
       }
     });
   });

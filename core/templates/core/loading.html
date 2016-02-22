@@ -16,17 +16,28 @@
   </nav>
   <section class="list-repositories container">
     <div class="jumbotron">
+      {% if not object.is_done %}
       <div class="col-md-2">
 		    <h1><i class="fa fa-circle-o-notch fa-spin"></i></h1>
       </div>
+      {% endif %}
       <div class="col-md-10">
         <h2>Hi {{ user }},</h2>
+        {% if not object.is_done %}
         <p>We're loading your repository... keep this page open, it will auto-refresh</p>
         <p class="tips">
-          <b>What to do next:</b><br>
+          <b>What you will do next:</b><br>
           1. After the loading ends, create an issue on your fork. Fill it with a title and content similar to some old issues from the parent repository;<br>
           2. Wait around 1 minute. CinnaBot will make a comment in your issue with useful tips.
         </p>
+        {% else %}
+        <p>Your repository is loaded!</p>
+        <p class="tips">
+          <b>What to do next:</b><br>
+          1. Now create an issue on your <a href="https://github.com/{{object.owner}}/{{object.name}}">fork</a> (activate issues for your fork on settings). Fill it with a title and content similar to some old issues from the parent repository;<br>
+          2. Wait around 1 minute. CinnaBot will make a comment in your issue with useful tips.
+        </p>
+        {% endif %}
       </div>
     </div>
       <div class="jumbotron last-jumbo">
@@ -38,4 +49,11 @@
         </p>
       </div>
   </section>
+  <script type="text/javascript">
+    {% if not object.is_done %}
+    window.setTimeout(function () {
+      window.location.reload(true);
+    }, 3000);
+    {% endif %}
+  </script>
 {% endblock %}
