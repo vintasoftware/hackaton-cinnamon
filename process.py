@@ -1,5 +1,6 @@
 import os
 import json
+import re
 from requests.auth import HTTPBasicAuth
 from django.utils.dateparse import parse_datetime
 
@@ -10,6 +11,7 @@ application = get_wsgi_application()
 
 import requests
 from issues.models import *
+from accounts.models import Repos
 
 for repo in Repos.objects.all():
     if repo.parent_repo:
@@ -18,7 +20,7 @@ for repo in Repos.objects.all():
     else:
         repo_owner = repo.owner
         repo = repo.name
-    if Issues.objects.filter(repo=repo, repo_owner=repo_owner).exists():
+    if Issue.objects.filter(repo=repo, repo_owner=repo_owner).exists():
         continue
 
     issues_url = 'https://api.github.com/repos/%s/%s/issues' % (repo_owner, repo)
@@ -36,7 +38,7 @@ for repo in Repos.objects.all():
             issue, is_new_issue = Issue.objects.get_or_create(
                 number=gh_issue['number'],
                 repo_owner=repo_owner,
-                repo=repo
+                repo=repo,
                 defaults={
                     'title': gh_issue['title'],
                     'body': gh_issue['body'] or '',
@@ -51,5 +53,56 @@ for repo in Repos.objects.all():
         issues_response = requests.get(issues_url, params={'state': 'all', 'page': page},
                                        auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
         issue_list = issues_response.json()
+
+    prs_url = 'https://api.github.com/repos/%s/%s/pulls' % (repo_owner, repo)
+
+    page = 1
+    response = requests.get(prs_url, params={'state': 'all', 'page': page},
+                            auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
+    pr_list = response.json()
+
+    while pr_list:
+        print('Page', page)
+        for pr in pr_list:
+            pr_body = pr['body'] or ""
+            issue_numbers = []
+
+            matches = list(re.finditer(r'#(\d+)', pr_body))
+            if matches:
+                issue_numbers += [issues.groups()[0] for issues in matches]
+
+            matches = list(re.finditer(r'#(\d+)', pr['title']))
+            if matches:
+                issue_numbers += [issues.groups()[0] for issues in matches]
+
+            if issue_numbers:
+                p, _ = PullRequest.objects.get_or_create(number=pr['number'],
+                                                         repo_owner=repo_owner,
+                                                         repo=repo,
+                                                         defaults={
+                                                            'title': pr['title'],
+                                                            'body': pr['body'] or '',
+                                                            'author': pr['user']['login'],
+                                                            'repo_owner': repo_owner,
+                                                            'repo': repo,
+                                                            'raw': json.dumps(pr)
+                                                         })
+                issues = Issue.objects.filter(repo_owner=repo_owner,
+                                              repo=repo,
+                                              number__in=issue_numbers)
+                p.issues = issues
+
+                response_files = requests.get(pr['url'] + '/files',
+                                              auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
+                files = response_files.json()
+                p.files = [File.objects.create(filename=f['filename']) for f in files]
+
+        page += 1
+        response = requests.get(prs_url, params={'state': 'all', 'page': page},
+                                auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
+        pr_list = response.json()
+
+
+
 
     print("Done!")
