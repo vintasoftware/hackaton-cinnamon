@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib.auth.views import logout
 from django.contrib import admin
 
-from core.views import LandingPageView
+from core.views import LandingPageView, LoadingTemplateView
 
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^repo/', include('accounts.urls', namespace='repo')),
     url(r'^logout/$', logout, name='logout', kwargs={'next_page': '/'}),
+    url(r'^loading/$', LoadingTemplateView.as_view(), name='loading'),
 
     # url(r'^api/v1/', include('bikeways.endpoints_urls')),
 ]

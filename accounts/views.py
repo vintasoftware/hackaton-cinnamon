@@ -24,8 +24,8 @@ class RepoListView(ListView):
         params = {'access_token': socialtoken}
         all_repos = requests.get('https://api.github.com/user/repos', params=params).json()
         repos_added = Repos.objects.all().values_list('name', flat=True)
-        context['repos_not_added'] = [(json.dumps(r), r['name']) for r in all_repos if r['name'] not in repos_added]
-        context['all_repos'] = [(json.dumps(r), r['name']) for r in all_repos]
+        context['repos_not_added'] = [(json.dumps(r), r['name']) for r in all_repos if r['name'] not in repos_added and r['private'] is False]
+        context['all_repos'] = [(json.dumps(r), r['name']) for r in all_repos if r['private'] is False]
         context['added_repos_names'] = repos_added
         return context
 

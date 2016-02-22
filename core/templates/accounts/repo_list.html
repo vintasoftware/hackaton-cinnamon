@@ -14,25 +14,22 @@
       </div>
     </div>
   </nav>
+
+
   <section class="list-repositories container">
     <div class="jumbotron">
       <h2>Hi {{ user }},</h2>
-      <p>To ativate <b>Cinnabot</b> in your repositories, please choose them on the list bellow:</p>
-    </div>
-    <div class="panel panel-danger">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Repositories's List</div>
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item"><b>Repository</b><b class="pull-right">Add/Remove</b></li>
-        {% for repo in all_repos %}
-          <li class="list-group-item">
-            <p>{{ repo.1 }}</p>
-            <button class="btn btn-{% if repo.1 in added_repos_names %}danger{% else %}success{% endif %} add_repo pull-right" data="{{ repo.0 }}">{% if repo.1 in added_repos_names %}Remove Repository{% else %}Add Repository{% endif %}</button>
-            </p>
-          </li>
-        {% endfor %}
-      </ul>
+      <p>To ativate <b>Cinnabot</b> in your repository, please choose it on the dropdown bellow:</p>
+    
+      <div class="form-group">
+        <select class="form-control input-lg" id="selector">
+          {% for repo in repos_not_added %}
+            <option value="{{ repo.0 }}">{{ repo.1 }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-lg btn-success add_repo">Ativate Cinnabot</button>
+  
     </div>
   </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -43,40 +40,21 @@
   var csrftoken = $.cookie('csrftoken');
 
   $('.add_repo').click(function() {
-    var $this = $(this);
-    var data = JSON.parse($(this).attr('data'));
-    if ($this.attr("class").split(' ').indexOf("btn-success") >=0){
-      $.ajax({
-        url:  "{% url 'repo:create' %}",
-        type: "POST",
-        headers: {"X-CSRFToken": csrftoken},
-        data: {
-          'user': data.owner.login,
-          'name': data['name'],
-          'html_url': data['html_url']
-        },
-        success: function(data) {
-          $this.addClass('btn-danger');
-          $this.removeClass('btn-success');
-          $this.text('Remove Repository');
-        }
-      });
-    }else{
-      $.ajax({
-        url:  "{% url 'repo:delete' %}",
-        type: "POST",
-        headers: {"X-CSRFToken": csrftoken},
-        data: {
-          'user': "{{ user }}",
-          'name': data['name']
-        },
-        success: function(data) {
-          $this.addClass('btn-success');
-          $this.removeClass('btn-danger');
-          $this.text('Add Repository');
-        }
-      });
-    }
+    var data = JSON.parse($("#selector").val());
+
+    $.ajax({
+      url: "{% url 'repo:create' %}",
+      type: "POST",
+      headers: {"X-CSRFToken": csrftoken},
+      data: {
+           'user': data.owner.login,
+           'name': data['name'],
+           'html_url': data['html_url']
+         },
+      success: function(data) {
+        window.location.href = '/loading';
+      }
+    });
   });
 </script>
 {% endblock %}
