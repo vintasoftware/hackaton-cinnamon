@@ -8,26 +8,26 @@ from allauth.account.adapter import DefaultAccountAdapter
 
 
 MESSAGE = """
-Here is our recommendation for the assignment ordinated by performance and availability:
-{% for user in users %}
-{{ forloop.counter }}. @{{ user }}
-{% endfor %}
-Assign the issue to someone. After this step we'll send more informations to help the coder.
+Hi, I have some suggestions to help solving this issue!
 
-We've a few suggestions to helps you to solve this issue!
-Here are a list with similar issues:
+The following users made pull-requests to related issues:
+{% for user in users %}**{{ user }}**{% if not forloop.last %}, {% endif %}{% endfor %}
+
+Maybe it's a good idea to assign them to this issue? Or at least ask them some tips?
+
+Some background now. Here is a list of similar issues:
 {% for issue in issues %}
 {{ forloop.counter }}. [{{ issue.name }}]({{ issue.link }})
 {% endfor %}
-Possible files where you'll need to work:
+Also, these are some files that might need to change:
 {% for file in files %}
 {{ forloop.counter }}. [{{ file }}](https://github.com/{{user}}/{{repo}}/blob/master/{{ file }})
 {% endfor %}
 
-We hope have helped!
-Thanks,
+Hope it's useful!
 
-Cinnabot."""
+Cheers,
+CinnaBot."""
 
 
 class AccountAdapter(DefaultAccountAdapter):
