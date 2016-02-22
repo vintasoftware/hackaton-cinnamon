@@ -101,8 +101,7 @@ for repo in Repos.objects.filter(is_done=False):
         response = requests.get(prs_url, params={'state': 'all', 'page': page},
                                 auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
         pr_list = response.json()
-
-
-
+    repo.is_done = True
+    repo.save()
 
     print("Done!")
