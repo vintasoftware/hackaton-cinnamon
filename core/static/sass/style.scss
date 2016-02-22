@@ -25,15 +25,18 @@ a {
   h2 {
     margin-top: 0!important;
   }
+
+  button {
+    margin-left: 0.5em;
+  }
 }
 
 select {
   width: 300px!important;
 }
-.form-inline {
-  button {
-    margin-left: 0.5em;
-  }
+
+.form-group {
+  display: inline-block;
 }
 
 #triangle-left {

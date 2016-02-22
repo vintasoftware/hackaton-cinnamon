@@ -6996,12 +6996,14 @@ a:hover {
 
 .jumbotron h2 {
   margin-top: 0 !important; }
+.jumbotron button {
+  margin-left: 0.5em; }
 
 select {
   width: 300px !important; }
 
-.form-inline button {
-  margin-left: 0.5em; }
+.form-group {
+  display: inline-block; }
 
 #triangle-left {
   width: 0;
