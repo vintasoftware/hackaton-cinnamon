@@ -170,9 +170,16 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
+SOCIALACCOUNT_PROVIDERS = {
+    'github':
+    {'SCOPE': ['user', 'repo']},
+}
+
 ACCOUNT_ADAPTER = 'accounts.allauth.AccountAdapter'
 
 AUTH_USER_MODEL = "accounts.Account"
 ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 SITE_ID = 6
+
+CINNABOT_TOKEN = 'f828ae3c08660d2c19860c3b9b26534fd4d790cc'
