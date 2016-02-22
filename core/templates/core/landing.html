@@ -21,9 +21,9 @@
       </div>
     </header>
     <section class="hero">
-      <h2 class="highlight">Get automated help for your GitHub project issues</h2>
+      <h2 class="highlight">Get automated <b>help</b> for your GitHub project <b>issues</b></h2>
       <p class="short-description">
-        <b>Cinnamon</b> is a GitHub plugin that helps you to fix your GitHub issues faster. When a new issue appears, our <b>CinnaBot</b> comment on it linking to similar issues on your project, indicating the code files where the bug might be, and even suggesting the best project developers to solve it.
+        <b>Cinnamon</b> is a GitHub plugin that helps you to <b>fix issues</b> faster. When a new issue appears, our <b>CinnaBot</b> comment on it suggesting the best project developers to work on it, giving links to other similar issues, and even indicating the code files to be changed.
       </p>
       {% for provider in socialaccount_providers %}
         <a title="Sign up with your Github account" class="btn socialaccount_provider {{provider.id}}" 
@@ -35,30 +35,30 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
-        <h2 class="sc_title sc_title_underline">About Cinnamon</h2>
-        <p class="sc_content">Purchasing products from ThemeRex means entrusting <br>your reputation to one of the best web-studios. </p>
+        <h2 class="sc_title sc_title_underline">Features</h2>
+        <p class="sc_content">Our <b>CinnaBot</b> comments on issues with useful info:</p>
       </div>
     </div>
     <div class="row text-center">
+      <div class="col-md-4 col-sm-6">
+        <div class="sc_column"> 
+          <a style="color: #fff; background-color: #fb563b;" href="#" class="sc_icon fa sc_icon_round bg_icon margin_bottom_mini noEdit fa-star"></a>
+          <h5 class="sc_title ">Who can solve it?</h5> 
+          <p>Who is the best developer to solve an issue? Who can give background about it? <b>CinnaBot</b> knows <b>which developers in your team</b> solved issues similar to the new one and will share this with you.</p>
+        </div>
+      </div>
       <div class="col-md-4 col-sm-12">
         <div class="sc_column"> 
           <a style="color: #fff; background-color: #fb563b;" href="#" class="sc_icon fa sc_icon_round bg_icon margin_bottom_mini noEdit fa-users"></a> 
-          <h5 class="sc_title ">Fit For Any Purpose</h5> 
-          <p>ThemeRex company does its work with a customer in mind which is we ensured that Classter theme will be any kind of website you wish.</p>
+          <h5 class="sc_title ">Any related issues?</h5> 
+          <p>Is this new issue related to an old one? <b>CinnaBot</b> answer this by linking to similar issues on your GitHub project. With this you get insight on <b>common problems</b>, <b>regressions</b>, and <b>possible solutions</b>.</p>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
         <div class="sc_column"> 
           <a style="color: #fff; background-color: #fb563b;" href="#" class="sc_icon fa sc_icon_round bg_icon margin_bottom_mini noEdit fa-leaf"></a> 
-          <h5 class="sc_title ">100% responsive</h5> 
-          <p>Classter will automatically be adjusted to any resolution without you having to worry about creating versions for each of the displays.</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="sc_column"> 
-          <a style="color: #fff; background-color: #fb563b;" href="#" class="sc_icon fa sc_icon_round bg_icon margin_bottom_mini noEdit fa-star"></a>
-          <h5 class="sc_title ">Free Updates &amp; Support</h5> 
-          <p>We create our themes with a thought of our customers, therefore our team works hard to provide you best technical support in the world.</p>
+          <h5 class="sc_title ">Where is the code?</h5> 
+          <p>On large codebases it might be difficult to find where the bug is or where the code must be changed. <b>CinnaBot</b> comes to rescue by listing which <b>files</b> changed in previous related pull-requests.</p>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
   </section>
   <section class="features">
     <div class="container">
-      <h2>How works</h2>
+      <h2>How it works</h2>
       <div class="col-md-7 visible-md visible-lg">
         <img src="{% static 'images/git-flow.png' %}" class="img-thumbnail">
       </div>
@@ -74,10 +74,10 @@
         <div id="triangle-left"></div>
         <div class="box">
           <span>
-            1. Short title
+            1. New issue
           </span>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sem enim, consectetur nec tristique et, rutrum eget orci. Suspendisse quis nisl a justo dapibus vehicula. Proin in felis pretium ex scelerisque congue in vitae dolor.
+            Cinnamon monitors your GitHub project for new issues. When someone adds one, Cinnamon gets its data to match against other issues and pull-requests of your project. Our natural language expert algorithms are perfect for this.
           </p>
         </div>
       </div>
@@ -85,10 +85,10 @@
         <div id="triangle-left"></div>
         <div class="box">
           <span>
-            2. Short title
+            2. Possible solvers 
           </span>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sem enim, consectetur nec tristique et, rutrum eget orci. Suspendisse quis nisl a justo dapibus vehicula. Proin in felis pretium ex scelerisque congue in vitae dolor.
+            Knowing who made the pull-requests that fixed similar issues, CinnaBot comments telling who on your project team is most qualified to solve this new issue. That's helpful! But CinnaBot does even more...
           </p>
         </div>
       </div>
@@ -96,10 +96,10 @@
         <div id="triangle-left"></div>
         <div class="box">
           <span>
-            3. Short title
+            3. Useful tips
           </span>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sem enim, consectetur nec tristique et, rutrum eget orci. Suspendisse quis nisl a justo dapibus vehicula. Proin in felis pretium ex scelerisque congue in vitae dolor.
+            Once someone is allocated to the issue, CinnaBot will comment on it with useful hints. A list of related issues is given, computed with an advanced similarity algorithm. Also, some files where the problem might be are listed.
           </p>
         </div>
       </div>
