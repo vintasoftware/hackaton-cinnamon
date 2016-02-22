@@ -12,9 +12,14 @@ from sklearn.metrics.pairwise import linear_kernel
 
 
 def find_similiar(issue, repo, repo_owner):
+    print(repo, repo_owner, issue)
     issue_number = issue.number
     issue_and_data = sorted([(obj.number, obj.get_feature())
                              for obj in Issue.objects.filter(repo_owner=repo_owner, repo=repo).order_by('number')])
+    if issue.repo_owner != repo_owner:
+        issue_number = Issue.objects.filter(repo_owner=repo_owner, repo=repo).order_by('-number').first().number + 1
+        issue_and_data += [(issue_number, issue.get_feature())]
+
     issue_number_to_index = {x[0]: i for i, x in enumerate(issue_and_data)}
     index_to_issue_number = {i: x[0] for i, x in enumerate(issue_and_data)}
     tfidf = TfidfVectorizer().fit_transform([x[1] for x in issue_and_data])
@@ -24,7 +29,10 @@ def find_similiar(issue, repo, repo_owner):
 
     similar_issues = []
     for index in related_docs_indices:
-        similar = Issue.objects.get(repo=repo, repo_owner=repo_owner, number=index_to_issue_number[index])
+        number = index_to_issue_number[index]
+        if number == issue_number:
+            number = issue.number
+        similar = Issue.objects.get(repo=repo, repo_owner=repo_owner, number=number)
         similar_issues.append(similar)
     return similar_issues[1:]
 
