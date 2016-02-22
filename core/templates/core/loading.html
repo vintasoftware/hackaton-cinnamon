@@ -23,15 +23,19 @@
         <h2>Hi {{ user }},</h2>
         <p>We're loading your repository... keep this page open, it will auto-refresh</p>
         <p class="tips">
-          <b>Good to know:</b>
-          <br>
-          - Cinnamon free version can only handle one repository at time. To add another, please wait until the loading ends.
-          <br><br>
           <b>What to do next:</b><br>
           1. After the loading ends, create an issue on your fork. Fill it with a title and content similar to some old issues from the parent repository;<br>
           2. Wait around 1 minute. CinnaBot will make a comment in your issue with useful tips.
         </p>
       </div>
     </div>
+      <div class="jumbotron">
+        <p class="tips">
+          <b>Good to know:</b>
+          <br>
+          - Cinnamon free version can only handle one repository at time. To add another, please wait until the loading ends.
+          <br><br>
+        </p>
+      </div>
   </section>
 {% endblock %}
