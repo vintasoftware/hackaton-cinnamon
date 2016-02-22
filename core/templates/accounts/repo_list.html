@@ -1,67 +1,81 @@
-<html>
-  <head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-  </head>
+{% extends "core/base.html" %}
+{% load staticfiles %}
 
-  <body>
-    User: {{ user }}
-    <span class="pull-right"><a href="{% url 'logout' %}">Logout</a></span>
-    <ul class="list-group">
-      <li class="list-group-item disabled">Your Repositories</li>
-      {% for repo in all_repos %}
-        <li class="list-group-item">
-          <div>
-            {{ repo.1 }}
-          <button class="btn btn-{% if repo.1 in added_repos_names %}danger{% else %}success{% endif %} add_repo pull-right" data="{{ repo.0 }}">{% if repo.1 in added_repos_names %}Remove Repository{% else %}Add Repository{% endif %}</button>
-          </p>
-        </li>
-      {% endfor %}
-    </ul>
+{% block content %}
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <img src="{% static 'images/logo.png' %}">
+        </a>
+      </div>
+      <div class="navbar-right">
+        <span class="pull-right"><a href="{% url 'logout' %}">Logout</a></span>
+      </div>
+    </div>
+  </nav>
+  <section class="list-repositories container">
+    <div class="jumbotron">
+      <h2>Hi {{ user }},</h2>
+      <p>To ativate <b>Cinnabot</b> in your repositories, please choose them on the list bellow:</p>
+    </div>
+    <div class="panel panel-danger">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Repositories's List</div>
+      <!-- List group -->
+      <ul class="list-group">
+        <li class="list-group-item"><b>Repository</b><b class="pull-right">Add/Remove</b></li>
+        {% for repo in all_repos %}
+          <li class="list-group-item">
+            <p>{{ repo.1 }}</p>
+            <button class="btn btn-{% if repo.1 in added_repos_names %}danger{% else %}success{% endif %} add_repo pull-right" data="{{ repo.0 }}">{% if repo.1 in added_repos_names %}Remove Repository{% else %}Add Repository{% endif %}</button>
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var csrftoken = $.cookie('csrftoken');
 
-  </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-<script type="text/javascript">
-
-  var csrftoken = $.cookie('csrftoken');
-
-  $('.add_repo').click(function() {
-    var $this = $(this);
-    var data = JSON.parse($(this).attr('data'));
-    if ($this.attr("class").split(' ').indexOf("btn-success") >=0){
-      $.ajax({
-        url:  "{% url 'repo:create' %}",
-        type: "POST",
-        headers: {"X-CSRFToken": csrftoken},
-        data: {
-          'user': "{{ user }}",
-          'name': data['name'],
-          'html_url': data['html_url']
-        },
-        success: function(data) {
-          $this.addClass('btn-danger');
-          $this.removeClass('btn-success');
-          $this.text('Remove Repository');
-        }
-      });
-    }else{
-      $.ajax({
-        url:  "{% url 'repo:delete' %}",
-        type: "POST",
-        headers: {"X-CSRFToken": csrftoken},
-        data: {
-          'user': "{{ user }}",
-          'name': data['name']
-        },
-        success: function(data) {
-          $this.addClass('btn-success');
-          $this.removeClass('btn-danger');
-          $this.text('Add Repository');
-        }
-      });
-    }
-  });
-
-</script>
-<html>
+    $('.add_repo').click(function() {
+      var $this = $(this);
+      var data = JSON.parse($(this).attr('data'));
+      if ($this.attr("class").split(' ').indexOf("btn-success") >=0){
+        $.ajax({
+          url:  "{% url 'repo:create' %}",
+          type: "POST",
+          headers: {"X-CSRFToken": csrftoken},
+          data: {
+            'user': "{{ user }}",
+            'name': data['name'],
+            'html_url': data['html_url']
+          },
+          success: function(data) {
+            $this.addClass('btn-danger');
+            $this.removeClass('btn-success');
+            $this.text('Remove Repository');
+          }
+        });
+      }else{
+        $.ajax({
+          url:  "{% url 'repo:delete' %}",
+          type: "POST",
+          headers: {"X-CSRFToken": csrftoken},
+          data: {
+            'user': "{{ user }}",
+            'name': data['name']
+          },
+          success: function(data) {
+            $this.addClass('btn-success');
+            $this.removeClass('btn-danger');
+            $this.text('Add Repository');
+          }
+        });
+      }
+    });
+  </script>
+{% endblock %}
