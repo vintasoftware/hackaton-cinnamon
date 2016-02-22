@@ -1,7 +1,7 @@
 
 from .base import *
 
-
+SITE_ID = 7
 DEBUG = True
 
 SECRET_KEY = 'd(nsti34x)&hy!u9=yhaitpho001g=w4iu*3ff2o^bs=a5&e*#'
