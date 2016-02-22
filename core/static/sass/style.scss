@@ -36,8 +36,13 @@ a {
 
   .tips {
     font-size: 18px;
-    margin-top: 2em;
+    margin: 0;
   }
+}
+
+
+.last-jumbo {
+  margin-bottom: 0!important;
 }
 
 select {
