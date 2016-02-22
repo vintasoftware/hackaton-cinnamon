@@ -22,15 +22,15 @@
       <div class="col-md-10">
         <h2>Hi {{ user }},</h2>
         <p>We're loading your repository...</p>
-        <p>
+        <p class="tips">
           <b>Good to know:</b>
           <br>
           - Cinnamon free version can only handle one repository at time. To add another, please wait until the loading ends.
           <br><br>
-          How to test:
-          1. Fork a repository with max 500 issues (suggestion: https://github.com/omab/python-social-auth/issues);
-          2. Wait until the loading ends, here Cinnamon is fetching all repo issues and pull-requests;
-          3. After the loading ends, create an issue on your fork. Fill it with a title and content similar to some old issues from the parent repository;
+          <b>How to test:</b><br>
+          1. Fork a repository with max 500 issues (suggestion: https://github.com/omab/python-social-auth/issues);<br>
+          2. Wait until the loading ends, here Cinnamon is fetching all repo issues and pull-requests;<br>
+          3. After the loading ends, create an issue on your fork. Fill it with a title and content similar to some old issues from the parent repository;<br>
           4. Wait around 1 minute. CinnaBot will make a comment in your issue with tips.
         </p>
       </div>

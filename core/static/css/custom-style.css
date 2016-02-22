@@ -6708,6 +6708,9 @@ a:hover {
     margin-top: 0 !important; }
   .jumbotron button {
     margin-left: 0.5em; }
+  .jumbotron .tips {
+    font-size: 18px;
+    margin-top: 2em; }
 
 select {
   width: 300px !important; }
