@@ -5,6 +5,7 @@
 
   <body>
     User: {{ user }}
+    <span class="pull-right"><a href="{% url 'logout' %}">Logout</a></span>
     <ul class="list-group">
       <li class="list-group-item disabled">Your Repositories</li>
       {% for repo in all_repos %}
