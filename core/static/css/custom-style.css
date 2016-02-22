@@ -6994,10 +6994,13 @@
 a:hover {
   text-decoration: none; }
 
-.jumbotron h2 {
-  margin-top: 0 !important; }
-.jumbotron button {
-  margin-left: 0.5em; }
+.jumbotron {
+  display: inline-block;
+  width: 100%; }
+  .jumbotron h2 {
+    margin-top: 0 !important; }
+  .jumbotron button {
+    margin-left: 0.5em; }
 
 select {
   width: 300px !important; }

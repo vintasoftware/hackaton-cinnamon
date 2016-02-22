@@ -14,12 +14,15 @@
       </div>
     </div>
   </nav>
-
-
   <section class="list-repositories container">
     <div class="jumbotron">
-      <h2>Hi {{ user }},</h2>
-		<h1><i class="fa fa-circle-o-notch"></i></h1>
+      <div class="col-md-2">
+		    <h1><i class="fa fa-circle-o-notch fa-spin"></i></h1>
+      </div>
+      <div class="col-md-10">
+        <h2>Hi {{ user }},</h2>
+        <p>We're loading your repository...</p>
+      </div>
     </div>
   </section>
 {% endblock %}
