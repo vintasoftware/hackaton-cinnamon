@@ -21,6 +21,21 @@ a {
   }
 }
 
+.jumbotron {
+  h2 {
+    margin-top: 0!important;
+  }
+}
+
+select {
+  width: 300px!important;
+}
+.form-inline {
+  button {
+    margin-left: 0.5em;
+  }
+}
+
 #triangle-left {
   width: 0;
   height: 0;

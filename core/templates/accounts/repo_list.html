@@ -17,22 +17,21 @@
   <section class="list-repositories container">
     <div class="jumbotron">
       <h2>Hi {{ user }},</h2>
-      <p>To ativate <b>Cinnabot</b> in your repositories, please choose them on the list bellow:</p>
-    </div>
-    <div class="panel panel-danger">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Repositories's List</div>
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item"><b>Repository</b><b class="pull-right">Add/Remove</b></li>
-        {% for repo in all_repos %}
-          <li class="list-group-item">
-            <p>{{ repo.1 }}</p>
-            <button class="btn btn-{% if repo.1 in added_repos_names %}danger{% else %}success{% endif %} add_repo pull-right" data="{{ repo.0 }}">{% if repo.1 in added_repos_names %}Remove Repository{% else %}Add Repository{% endif %}</button>
-            </p>
-          </li>
-        {% endfor %}
-      </ul>
+      <p>To ativate <b>Cinnabot</b> in your repository, please choose it on the dropdown bellow:</p>
+    
+        <form class="form-inline">
+          <div class="form-group">
+            <select class="form-control input-lg">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-lg btn-success">Ativate Cinnabot</button>
+        </form>
+  
     </div>
   </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
