@@ -5,7 +5,7 @@ a:hover {
   width: 0;
   height: 0;
   border-top: 30px solid transparent;
-  border-right: 30px solid #A1887F;
+  border-right: 30px solid #9E3F20;
   border-bottom: 30px solid transparent;
   float: left;
   position: relative;
@@ -15,7 +15,7 @@ a:hover {
       display: none; } }
 
 .box {
-  border: solid 10px #A1887F;
+  border: solid 10px #9E3F20;
   min-height: 240px;
   width: 92%;
   float: left;
@@ -30,7 +30,7 @@ a:hover {
   .box span {
     display: inline-block;
     width: 100%;
-    background: #A1887F;
+    background: #9E3F20;
     color: #fff;
     text-align: center;
     padding-bottom: 10px; }
@@ -40,7 +40,7 @@ a:hover {
     padding-right: 25px; }
 
 .btn {
-  background-color: #A1887F;
+  background-color: #9E3F20;
   border: 0;
   border-radius: 52px;
   color: #FFFFFF;
