@@ -44,6 +44,7 @@ class RepoCreateView(CreateView):
             self.object.parent_repo_owner = repo_details['parent']['owner']['login']
             self.object.parent_repo = repo_details['parent']['name']
             self.object.owner = repo_details['owner']['login']
+            self.object.creating = True
         self.object.save()
         return HttpResponse(json.dumps(form.data), content_type="application/json")
 
