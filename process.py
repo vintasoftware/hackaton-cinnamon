@@ -13,7 +13,7 @@ import requests
 from issues.models import *
 from accounts.models import Repos
 
-for repo in Repos.objects.all():
+for repo in Repos.objects.filter(is_done=False):
     if repo.parent_repo:
         repo_owner = repo.parent_repo_owner
         repo = repo.parent_repo

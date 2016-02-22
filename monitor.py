@@ -15,7 +15,7 @@ from issues.utils.similar import find_similiar
 from issues.models import *
 
 
-for repo in Repos.objects.all():
+for repo in Repos.objects.filter(is_done=True):
     repo_owner = repo.owner
     repo = repo.name
 
