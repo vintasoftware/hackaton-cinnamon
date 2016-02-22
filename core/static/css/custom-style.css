@@ -6734,7 +6734,6 @@ select {
 .box {
   border: solid 10px #fb563b;
   min-height: 240px;
-  width: 92%;
   float: left;
   text-align: left;
   margin-bottom: 4px;
@@ -6848,11 +6847,7 @@ main {
     margin-top: 0;
     text-align: center; }
   .features .item {
-    position: relative;
     margin-bottom: 2em; }
-    @media (min-width: 992px) {
-      .features .item {
-        top: 90px; } }
   .features .informations {
     height: 300px;
     margin: 20px 0; }

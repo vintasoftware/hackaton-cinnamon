@@ -66,7 +66,6 @@ select {
 .box {
   border: solid 10px #fb563b;
   min-height: 240px;
-  width: 92%;
   float:left;
   text-align: left;
   margin-bottom: 4px;
@@ -210,12 +209,7 @@ main {
   }
 
   .item {
-    position: relative;
     margin-bottom: 2em;
-
-    @media #{$medium-devices-min} {
-      top: 90px
-    }
   }
 
   .informations {
