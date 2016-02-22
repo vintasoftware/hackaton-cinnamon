@@ -1,0 +1,26 @@
+.navbar {
+  background: #fb563b;
+
+  .navbar-brand {
+    padding: 8px 15px;
+
+    img {
+      width: 125px;
+    }
+  }
+  span {
+    a {
+      color: #fff;
+      font-size: 16px;
+      margin: 25px;
+      position: relative;
+      top: 12px;
+    }
+  }
+}
+
+.list-repositories {
+  p {
+    display: inline-block;
+  }
+}

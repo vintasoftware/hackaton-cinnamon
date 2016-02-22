@@ -61,6 +61,7 @@
   /*right*/
   /*left*/
   /* padding */
+  /* --- Main background --- */
   /* float */
   /**/
   /* teaser */
@@ -178,6 +179,9 @@
   /*= support page ==================================================================================================================================================================*/
   /*= toTop ==================================================================================================================================================================*/
   /*= easy pie chart ==================================================================================================================================================================*/
+  /*= prettyPhoto ==================================================================================================================================================================*/
+  /*.pp_nav p{float:left;white-space:nowrap;margin:2px 4px}*/
+  /*a.pp_arrow_previous,a.pp_arrow_next{display:block;float:left;height:15px;margin-top:3px;overflow:hidden;text-indent:-10000px;width:14px}*/
   /*= thumbnail ==================================================================================================================================================================*/
   /*= Slider ==================================================================================================================================================================*/
   /* revlink */
@@ -2173,6 +2177,31 @@
     padding-top: 90px; }
   .about_section .padding_bottom_large {
     padding-bottom: 90px; }
+  .about_section .sc_quote_style_1,
+  .about_section .audio_container,
+  .about_section .topTabsWrap,
+  .about_section .relatedPostWrap article .wrap.no_thumb,
+  .about_section .postAside,
+  .about_section .bg_image,
+  .about_section .postStatus,
+  .about_section .postLink,
+  .about_section .portfolioWrap .isotopePadding,
+  .about_section .userHeaderSection.global,
+  .about_section .userFooterSection.global {
+    background-image: url(../images/background.jpg);
+    background-size: 100% 100%;
+    background-position: left top; }
+  .about_section .userHeaderSection.global,
+  .about_section .userFooterSection.global {
+    background-size: 100% auto; }
+  .about_section .userHeaderSection_bg_1 {
+    background-image: url(../images/background_1.jpg) !important; }
+  .about_section .userHeaderSection_bg_2 {
+    background-image: url(../images/background_2.jpg) !important; }
+  .about_section .userHeaderSection_bg_3 {
+    background-image: url(../images/background_3.jpg) !important; }
+  .about_section .userHeaderSection_bg_4 {
+    background-image: url(../images/background_4.jpg) !important; }
   .about_section .floatleft {
     display: inline;
     float: left;
@@ -3012,6 +3041,7 @@
   .about_section .sc_video_player .sc_video_player_title:after,
   .about_section .sc_video_player .sc_video_player_title:before {
     height: 21px;
+    background-image: url(images/video_title.png);
     background-position: no-repeat; }
   .about_section .sc_video_player .sc_video_player_title {
     background-position: no-repeat;
@@ -3203,6 +3233,7 @@
     content: ' ';
     height: 62px;
     width: 96px;
+    background-image: url(../images/quotes.png);
     background-position: no-repeat; }
   .about_section blockquote.sc_quote p {
     padding-bottom: 20px; }
@@ -3837,6 +3868,8 @@
     -o-transition-delay: 0.15s;
     -moz-transition-delay: 0.15s;
     transition-delay: 0.15s; }
+  .about_section .imgNav.bgimage {
+    background-image: url(../images/Branding-Identity-MockUp-Vol8-full.jpg); }
   .about_section .imgNav .itemPrev:before,
   .about_section .imgNav .itemNext:before,
   .about_section .imgNav .itemPrev .itInf,
@@ -5617,6 +5650,8 @@
     text-align: center; }
   .about_section .sc_team_item .sc_team_item_socials li a {
     background-color: transparent; }
+  .about_section .sc_parallax .sc_parallax_content {
+    background-image: url(../images/parallax_bg.jpg); }
   .about_section .sc_parallax .sc_title_underline:after {
     display: none; }
   .about_section .sc_parallax .features_container_left,
@@ -5886,6 +5921,21 @@
     background-color: rgba(255, 255, 255, 0.2); }
   .about_section .sc_things .container {
     padding-bottom: 0; }
+  .about_section .sc_things [class*="col-"] {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important; }
+  .about_section .sc_things .things_image {
+    background-image: url(../images/responsive.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat; }
+  .about_section .sc_things .sc_column_item {
+    margin-bottom: 33px; }
+  .about_section .sc_things .things2_image {
+    background-image: url(../images/phones.jpg);
+    background-position: top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    z-index: 2; }
   .about_section .sc_things .things2_content {
     margin: 0 50px; }
   .about_section .info1_icon {
@@ -6257,6 +6307,7 @@
   .about_section .video_2columns .sc_video_frame {
     padding-bottom: 51.5%; }
   .about_section .store_page .flexslider {
+    background-image: url(../images/fon_back.jpg);
     background-size: cover;
     background-position: 50% 0%;
     background-repeat: no-repeat; }
@@ -6355,6 +6406,247 @@
     margin-top: 100px; }
   .about_section .angular .chart {
     margin-top: 0; }
+  .about_section div.facebook .pp_expand {
+    background: url(../images/prettyPhoto/facebook/sprite.png) -31px -26px no-repeat;
+    cursor: pointer; }
+  .about_section div.facebook .pp_expand:hover {
+    background: url(../images/prettyPhoto/facebook/sprite.png) -31px -47px no-repeat;
+    cursor: pointer; }
+  .about_section div.facebook .pp_contract {
+    background: url(../images/prettyPhoto/facebook/sprite.png) 0 -26px no-repeat;
+    cursor: pointer; }
+  .about_section div.facebook .pp_contract:hover {
+    background: url(../images/prettyPhoto/facebook/sprite.png) 0 -47px no-repeat;
+    cursor: pointer; }
+  .about_section div.facebook .pp_close {
+    width: 22px;
+    height: 22px;
+    background: url(../images/prettyPhoto/facebook/sprite.png) -1px -1px no-repeat;
+    cursor: pointer;
+    z-index: 3000; }
+  .about_section div.facebook .pp_description {
+    margin: 0 37px 0 0; }
+  .about_section div.facebook .pp_loaderIcon {
+    background: url(../images/prettyPhoto/facebook/loader.gif) center center no-repeat; }
+  .about_section div.facebook .pp_arrow_previous {
+    display: none; }
+  .about_section div.facebook .pp_arrow_previous.disabled {
+    background-position: 0 -96px;
+    cursor: default; }
+  .about_section div.facebook .pp_arrow_next {
+    display: none; }
+  .about_section div.facebook .pp_arrow_next.disabled {
+    display: none;
+    background-position: -32px -96px;
+    cursor: default; }
+  .about_section div.facebook .pp_nav {
+    margin-top: 0; }
+  .about_section div.facebook .pp_nav p {
+    font-size: 12px;
+    padding: 0 8px 0 0; }
+  .about_section div.facebook .pp_nav .pp_play {
+    display: none;
+    background: url(../images/prettyPhoto/facebook/sprite.png) -1px -123px no-repeat;
+    height: 22px;
+    width: 22px; }
+  .about_section div.facebook .pp_nav .pp_pause {
+    display: none;
+    background: url(../images/prettyPhoto/facebook/sprite.png) -32px -123px no-repeat;
+    height: 22px;
+    width: 22px; }
+  .about_section div.facebook .pp_next:hover {
+    background: url(../images/prettyPhoto/facebook/btnNext.png) center right no-repeat;
+    cursor: pointer; }
+  .about_section div.facebook .pp_previous:hover {
+    background: url(../images/prettyPhoto/facebook/btnPrevious.png) center left no-repeat;
+    cursor: pointer; }
+  .about_section div.pp_pic_holder a:focus {
+    outline: none; }
+  .about_section div.pp_overlay {
+    background: #000;
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 9500; }
+  .about_section div.pp_pic_holder {
+    display: none;
+    position: absolute;
+    width: 100px;
+    z-index: 10000; }
+  .about_section .pp_content {
+    height: 40px;
+    min-width: 40px;
+    overflow: hidden; }
+  .about_section * html .pp_content {
+    width: 40px; }
+  .about_section .pp_content_container {
+    position: relative;
+    text-align: left;
+    width: 100%; }
+  .about_section .pp_content_container .pp_left {
+    padding-left: 20px; }
+  .about_section .pp_content_container .pp_right {
+    padding-right: 20px; }
+  .about_section .pp_content_container .pp_details {
+    float: left;
+    /*margin:10px 0 2px;*/
+    padding: 2px 10px;
+    background-color: #373746;
+    color: #fff; }
+  .about_section .pp_description {
+    display: none;
+    margin: 0; }
+  .about_section .pp_social {
+    float: left;
+    margin: 0;
+    display: none; }
+  .about_section .pp_social .facebook {
+    float: left;
+    margin-left: 5px;
+    width: auto;
+    overflow: hidden; }
+  .about_section .pp_social .twitter {
+    float: left; }
+  .about_section .pp_nav {
+    clear: left;
+    float: right;
+    margin: 3px 10px 0 0; }
+  .about_section .pp_nav .pp_play, .about_section .pp_nav .pp_pause {
+    float: left;
+    margin-right: 4px;
+    text-indent: -10000px; }
+  .about_section .pp_hoverContainer {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2000; }
+  .about_section .pp_gallery {
+    display: none !important;
+    left: 50%;
+    margin-top: -50px;
+    position: absolute;
+    z-index: 10000; }
+  .about_section .pp_gallery div {
+    float: left;
+    overflow: hidden;
+    position: relative; }
+  .about_section .pp_gallery ul {
+    float: left;
+    height: auto;
+    position: relative;
+    white-space: nowrap;
+    margin: 0 0 0 5px;
+    padding: 0; }
+  .about_section .pp_gallery ul a {
+    border: 1px rgba(0, 0, 0, 0.5) solid;
+    display: block;
+    float: left;
+    height: auto;
+    overflow: hidden; }
+  .about_section .pp_gallery ul a img {
+    border: 0; }
+  .about_section .pp_gallery li {
+    display: block;
+    float: left;
+    margin: 0 5px 0 0;
+    padding: 0; }
+  .about_section .pp_gallery li.default a {
+    background: url(../imagesprettyPhoto/facebook/default_thumbnail.gif) 0 0 no-repeat;
+    display: block;
+    height: 33px;
+    width: 50px; }
+  .about_section .pp_gallery .pp_arrow_previous, .about_section .pp_gallery .pp_arrow_next {
+    margin-top: 7px !important; }
+  .about_section a.pp_next {
+    background: url(../images/prettyPhoto/light_rounded/btnNext.png) 10000px 10000px no-repeat;
+    display: block;
+    float: right;
+    height: 100%;
+    text-indent: -10000px;
+    width: 49%;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none; }
+  .about_section a.pp_previous {
+    background: url(../images/prettyPhoto/light_rounded/btnNext.png) 10000px 10000px no-repeat;
+    display: block;
+    float: left;
+    height: 100%;
+    text-indent: -10000px;
+    width: 49%;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none; }
+  .about_section a.pp_expand, .about_section a.pp_contract {
+    cursor: pointer;
+    display: none;
+    height: 20px;
+    position: absolute;
+    right: 30px;
+    text-indent: -10000px;
+    top: 10px;
+    width: 20px;
+    z-index: 20000; }
+  .about_section a.pp_close {
+    position: absolute;
+    right: 6px;
+    top: -16px;
+    display: block;
+    line-height: 22px;
+    text-indent: -10000px; }
+  .about_section .pp_loaderIcon {
+    display: block;
+    height: 24px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 24px;
+    margin: -12px 0 0 -12px; }
+  .about_section #pp_full_res {
+    line-height: 1 !important; }
+  .about_section #pp_full_res .pp_inline {
+    text-align: left; }
+  .about_section #pp_full_res .pp_inline p {
+    margin: 0 0 15px; }
+  .about_section div.ppt {
+    color: #fff;
+    display: none;
+    font-size: 17px;
+    z-index: 9999;
+    margin: 0 0 5px 15px; }
+  .about_section .pp_top, .about_section .pp_bottom {
+    height: 20px;
+    position: relative; }
+  .about_section * html .pp_top, .about_section * html .pp_bottom {
+    padding: 0 20px; }
+  .about_section .pp_top .pp_left, .about_section .pp_bottom .pp_left {
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 20px; }
+  .about_section .pp_top .pp_middle, .about_section .pp_bottom .pp_middle {
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    right: 20px; }
+  .about_section * html .pp_top .pp_middle, .about_section * html .pp_bottom .pp_middle {
+    left: 0;
+    position: static; }
+  .about_section .pp_top .pp_right, .about_section .pp_bottom .pp_right {
+    height: 20px;
+    left: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px; }
+  .about_section .pp_fade, .about_section .pp_gallery li.default a img {
+    display: none; }
   .about_section .thumbnail {
     position: relative;
     text-align: center;
