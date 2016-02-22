@@ -11,6 +11,8 @@ $medium-devices-min: "(min-width: 992px)";
 $large-devices-min: "(min-width: 1200px)";
 $extra-large-devices: "(min-width: 1440px)";
 
+@import "other-sass";
+
 //Main
 a {
   &:hover {
@@ -18,8 +20,56 @@ a {
   }
 }
 
+#triangle-left {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-right: 30px solid #fb563b;
+  border-bottom: 30px solid transparent;
+  float: left;
+  position: relative;
+  top: 90px;
+
+  @media #{$large-devices} {
+    display: none;
+  }
+}
+
+.box {
+  border: solid 10px #fb563b;
+  min-height: 240px;
+  width: 92%;
+  float:left;
+  text-align: left;
+  margin-bottom: 4px;
+  color: #000;
+  font-size: 18px;
+  font-family: "Source Sans Pro", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+
+  @media #{$large-devices} {
+    width: 100%;
+  }
+
+  span {
+    display: inline-block;
+    width: 100%;
+    background: #fb563b;
+    color: #fff;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  p {
+    padding-top: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+
+
 .btn {
-  background-color: #A1887F;
+  background-color: #fb563b;
   border: 0;
   border-radius: 52px;
   color: #FFFFFF;
@@ -120,15 +170,51 @@ main {
 }
 
 .features {
-  padding:80px 0;
+  padding-top:80px;
 
   h2 {
       color: #000;
       font-family: "Source Sans Pro", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+      padding-bottom:80px;
       font-weight: 300;
       font-size: 52px;
       margin-bottom: 17px;
       margin-top: 0;
       text-align: center;
   }
+
+  .item {
+    position: relative;
+    margin-bottom: 2em;
+
+    @media #{$medium-devices-min} {
+      top: 90px
+    }
+  }
+
+  .informations {
+    height: 300px;
+    margin: 20px 0;
+  }
+}
+
+.about_section {
+  padding-top: 80px;
+
+  h2 {
+      color: #000;
+      font-family: "Source Sans Pro", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+      padding-bottom:80px;
+      font-weight: 300;
+      font-size: 52px;
+      margin-bottom: 17px;
+      margin-top: 0;
+      text-align: center;
+  }
+}
+
+footer {
+  text-align: center;
+  color: #888888;
+  padding: 40px;
 }

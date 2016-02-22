@@ -36,7 +36,6 @@ oauthlib==1.0.3
 path.py==8.1.2
 pexpect==4.0.1
 pickleshare==0.6
-psycopg2==2.6.1
 ptyprocess==0.5.1
 pyasn1==0.1.9
 pycparser==2.14

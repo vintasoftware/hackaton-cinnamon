@@ -1,7 +1,9 @@
 {% extends "core/base.html" %}
 {% load staticfiles %}
+{% load socialaccount %}
 
 {% block content %}
+  {% get_providers as socialaccount_providers %}
   <main>
     <div class="mask"></div>
     <header class="header" id="header">
@@ -11,21 +13,96 @@
           <div class="col-md-4 col-xs-12 logo">
             <a href="/"><img src="{% static 'images/logo.png' %}"></a>
           </div>
-          <a href="accounts/github/login" class="rounded-button pull-right visible-md visible-lg">Sign up</a>
+          {% for provider in socialaccount_providers %}
+            <a title="Sign up" class="rounded-button pull-right visible-md visible-lg socialaccount_provider {{provider.id}}" 
+               href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">Sign up</a>
+          {% endfor %}
         </div>
       </div>
     </header>
     <section class="hero">
-      <h2 class="highlight">Choose the right person for your GitHub issues</h2>
+      <h2 class="highlight">Get automated help for your GitHub project issues</h2>
       <p class="short-description">
-        Cinnamon is a github manager who helps you to choose the best person to solve a recent created issue. Our algorith analyses all the solved issues and his specific commits to refer the best coder available to solve it!
+        <b>Cinnamon</b> is a GitHub plugin that helps you to fix your GitHub issues faster. When a new issue appears, our <b>CinnaBot</b> comment on it linking to similar issues on your project, indicating the code files where the bug might be, and even suggesting the best project developers to solve it.
       </p>
-      <a href="accounts/github/login" class="btn">Sign up with your Github account</a>
+      {% for provider in socialaccount_providers %}
+        <a title="Sign up with your Github account" class="btn socialaccount_provider {{provider.id}}" 
+           href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">Sign up with your Github account</a>
+      {% endfor %}
     </section>
   </main>
+  <section class="light_section about_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2 class="sc_title sc_title_underline">About Cinnamon</h2>
+        <p class="sc_content">Purchasing products from ThemeRex means entrusting <br>your reputation to one of the best web-studios. </p>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4 col-sm-12">
+        <div class="sc_column"> 
+          <a style="color: #fff; background-color: #fb563b;" href="#" class="sc_icon fa sc_icon_round bg_icon margin_bottom_mini noEdit fa-users"></a> 
+          <h5 class="sc_title ">Fit For Any Purpose</h5> 
+          <p>ThemeRex company does its work with a customer in mind which is we ensured that Classter theme will be any kind of website you wish.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="sc_column"> 
+          <a style="color: #fff; background-color: #fb563b;" href="#" class="sc_icon fa sc_icon_round bg_icon margin_bottom_mini noEdit fa-leaf"></a> 
+          <h5 class="sc_title ">100% responsive</h5> 
+          <p>Classter will automatically be adjusted to any resolution without you having to worry about creating versions for each of the displays.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class="sc_column"> 
+          <a style="color: #fff; background-color: #fb563b;" href="#" class="sc_icon fa sc_icon_round bg_icon margin_bottom_mini noEdit fa-star"></a>
+          <h5 class="sc_title ">Free Updates &amp; Support</h5> 
+          <p>We create our themes with a thought of our customers, therefore our team works hard to provide you best technical support in the world.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
   <section class="features">
     <div class="container">
       <h2>How works</h2>
+      <div class="col-md-7 visible-md visible-lg">
+        <img src="{% static 'images/git-flow.png' %}" class="img-thumbnail">
+      </div>
+      <div class="col-md-5 col-xs-12 item">
+        <div id="triangle-left"></div>
+        <div class="box">
+          <span>
+            1. Short title
+          </span>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sem enim, consectetur nec tristique et, rutrum eget orci. Suspendisse quis nisl a justo dapibus vehicula. Proin in felis pretium ex scelerisque congue in vitae dolor.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-5 col-xs-12 item">
+        <div id="triangle-left"></div>
+        <div class="box">
+          <span>
+            2. Short title
+          </span>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sem enim, consectetur nec tristique et, rutrum eget orci. Suspendisse quis nisl a justo dapibus vehicula. Proin in felis pretium ex scelerisque congue in vitae dolor.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-5 col-xs-12 item">
+        <div id="triangle-left"></div>
+        <div class="box">
+          <span>
+            3. Short title
+          </span>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sem enim, consectetur nec tristique et, rutrum eget orci. Suspendisse quis nisl a justo dapibus vehicula. Proin in felis pretium ex scelerisque congue in vitae dolor.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 {% endblock %}
