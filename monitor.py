@@ -22,7 +22,8 @@ GITHUB_KEY = os.environ['GITHUB_KEY']
 
 # get new issues
 
-since = Issue.objects.order_by('-updated_at').first().updated_at + timedelta(seconds=1)
+since = Issue.objects.filter(repo_owner=repo_owner, repo=repo
+    ).order_by('-updated_at').first().updated_at
 page = 1
 issues_response = requests.get(issues_url, params={'state': 'open', 'page': page,
                                                    'since': since.isoformat()},
