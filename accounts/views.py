@@ -37,6 +37,12 @@ class RepoCreateView(CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        socialtoken = SocialToken.objects.get(account__user=self.request.user)
+        params = {'access_token': socialtoken}
+        repo_details = requests.get('https://api.github.com/repos/aericson/python-social-auth', params=params).json()
+        if repo_details.get('parent'):
+            self.object.parent_repo_owner = repo_details['parent']['owner']['login']
+            self.object.parent_repo = repo_details['parent']['name']
         self.object.save()
         return HttpResponse(json.dumps(form.data), content_type="application/json")
 

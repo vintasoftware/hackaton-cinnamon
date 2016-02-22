@@ -35,7 +35,7 @@
         type: "POST",
         headers: {"X-CSRFToken": csrftoken},
         data: {
-          'user': "{{ user }}",
+          'user': data.owner.login,
           'name': data['name'],
           'html_url': data['html_url']
         },
