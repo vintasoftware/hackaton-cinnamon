@@ -14,6 +14,7 @@ from issues.models import *
 from accounts.models import Repos
 
 for repo in Repos.objects.filter(is_done=False):
+    repo_obj = repo
     if repo.parent_repo:
         repo_owner = repo.parent_repo_owner
         repo = repo.parent_repo
@@ -22,7 +23,6 @@ for repo in Repos.objects.filter(is_done=False):
         repo = repo.name
     if Issue.objects.filter(repo=repo, repo_owner=repo_owner).exists():
         continue
-
     issues_url = 'https://api.github.com/repos/%s/%s/issues' % (repo_owner, repo)
     GITHUB_USER = os.environ['GITHUB_USER']
     GITHUB_KEY = os.environ['GITHUB_KEY']
@@ -101,7 +101,7 @@ for repo in Repos.objects.filter(is_done=False):
         response = requests.get(prs_url, params={'state': 'all', 'page': page},
                                 auth=HTTPBasicAuth(GITHUB_USER, GITHUB_KEY))
         pr_list = response.json()
-    repo.is_done = True
-    repo.save()
+    repo_obj.is_done = True
+    repo_obj.save()
 
     print("Done!")
